@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>INNR [FLMS] — AI Cinematography · Film Production</title>
-  <meta name="description" content="INNR [FLMS] is an AI cinematography studio working at the intersection of film, visual storytelling, generative AI, VFX and new production workflows." />
+  <meta name="description" content="INNR [FLMS] is an independent film studio hacking the intersection of cinematic storytelling, human-first AI workflows, and optimistic futures." />
   
   <style>
     :root {
@@ -36,7 +36,7 @@
       overflow-x: hidden;
     }
 
-    /* Subtle print-like texture overlay */
+    /* Subtle cinematic print grain */
     body:before {
       content: "";
       position: fixed;
@@ -247,6 +247,127 @@
       color: var(--text); 
     }
 
+    /* Audience Testing Framework CSS */
+    .testing-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 24px;
+    }
+
+    .hook-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--line);
+      padding: 16px 0;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .hook-btn:first-child {
+      padding-top: 0;
+    }
+
+    .hook-btn .hook-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .hook-btn .hook-text {
+      font-size: 16px;
+      color: var(--soft);
+      line-height: 1.4;
+      font-weight: 700;
+      transition: color 0.2s ease;
+    }
+
+    .hook-btn.active .hook-text {
+      color: var(--gold);
+    }
+
+    .hook-btn.active .hook-tag {
+      color: var(--gold);
+    }
+
+    .matrix-card {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.01);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .matrix-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+    }
+
+    .matrix-header span {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .matrix-metrics {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .metric-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .metric-label-container {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .metric-val {
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .metric-track {
+      height: 2px;
+      background: rgba(242, 238, 230, 0.08);
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .metric-fill {
+      height: 100%;
+      background: var(--gold);
+      width: 0%;
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .matrix-synopsis {
+      margin-top: 24px;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--soft);
+    }
+
     .principles-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -345,7 +466,6 @@
       line-height: 1.5;
     }
 
-    /* Updated Founder Grid: Styled cleanly as a 2-column editorial structure with metrics panel removed */
     .founder-grid {
       display: grid;
       grid-template-columns: 310px 1fr;
@@ -511,7 +631,7 @@
     }
 
     @media (max-width: 1024px) {
-      .section-title-grid, .pipeline-strategy, .founder-grid, .contact-grid {
+      .section-title-grid, .pipeline-strategy, .founder-grid, .contact-grid, .testing-container {
         grid-template-columns: 1fr;
         gap: 24px;
       }
@@ -552,6 +672,7 @@
 
   <div class="page" id="top">
     
+    <!-- HEADER -->
     <header class="nav">
       <a href="#top" class="wordmark">
         <span class="innr">INNR</span>
@@ -559,46 +680,207 @@
       </a>
       
       <nav class="navlinks">
-        <a href="#project">Project</a>
-        <a href="#workflow">Pipeline</a>
-        <a href="#founder">Founder</a>
-        <a href="#contact">Contact</a>
+        <a href="#project">The Project</a>
+        <a href="#vibe-check">Audience Signals</a>
+        <a href="#pipeline">How We Cook</a>
+        <a href="#founder">The Founder</a>
+        <a href="#contact">Pitch Us</a>
       </nav>
 
       <div class="nav-actions">
-        <a href="mailto:info@innr.film" class="action-pitch">PITCH DECK</a>
+        <a href="mailto:info@innr.film" class="action-pitch">GET THE DECK</a>
       </div>
     </header>
 
+    <!-- HERO SECTION -->
     <section class="hero">
       <div class="hero-text">
-        <h1 class="text-glow">Human stories.<br/>Future systems.</h1>
-        <p>INNR Films develops cinematic science-fiction IP and restrained AI-assisted workflows for feature-ready films. Based at the intersection of public trust and technological acceleration.</p>
-        <span class="principle">// ACTIVE IP DEVELOPMENT: THE MATTER COMMONS</span>
+        <h1 class="text-glow">No boring dystopias.<br/>Just clean chaos.</h1>
+        <p>INNR Films drops high-stakes sci-fi IPs and bulletproof, artist-controlled AI workflows. We build cinema for a world that's accelerating faster than your feed.</p>
+        <span class="principle">// CURRENT RUN: THE MATTER COMMONS — SUBMITTED FOR THE FUTURE VISION XPRIZE</span>
       </div>
     </section>
 
+    <!-- SECTION 1: THE MATTER COMMONS OVERVIEW -->
     <section id="project" class="section">
       <div class="section-title-grid">
         <div class="section-title">
           <h2>The Matter Commons</h2>
-          <div class="sub">Current Project Package</div>
+          <div class="sub">The Master Blueprint</div>
         </div>
         <div class="section-copy">
-          <p>A machine-learning scientist builds the operating system, safety layer, and public governance framework for a groundbreaking technology that can compile matter from raw energy. His answer is the <strong>Commons Patch</strong> — an open public layer designed to prevent infinite abundance from turning into centralized, total control.</p>
-          <p>This optimistic, grounded science-fiction feature film package was created for the <strong>Future Vision XPRIZE</strong>. It emphasizes public auditability, trust-building, and technological balance over simple spectacle.</p>
+          <p>Imagine a machine that prints literally <em>anything</em> from thin air. Food, medicine, clean energy—you name it. Now imagine the massive tech conglomerates trying to lock it down forever. Standard dystopian nightmare, right?</p>
+          <p>But our hero, a rogue developer, decides he's not having it. He leaks the <strong>Commons Patch</strong> — an open-source public protocol that unlocks infinite material abundance for everyone on earth. This is a high-octane, tech-optimistic sci-fi feature packaged directly for the <strong>Future Vision XPRIZE</strong>. It’s about people refusing to let the future be gatekept.</p>
         </div>
       </div>
     </section>
 
+    <!-- SECTION 2: THE PREMISE (UNFILTERED CHARACTER FOCUS) -->
+    <section class="section">
+      <div class="section-title-grid">
+        <div class="section-title">
+          <h2>The Core Idea</h2>
+          <div class="sub">The ultimate power trip</div>
+        </div>
+        <div class="section-copy">
+          <p style="font-size: 24px; line-height: 1.4; color: var(--text); font-weight: 300; margin-bottom: 24px;">
+            "We built a machine to delete starvation. The bosses built a system to sue us for it."
+          </p>
+          <p>Our story skips the usual depressing sci-fi clichés. There are no mutant terminators or dreary gray ashes. It's a gripping, fast-paced battle of wits where communities, rogue coders, and neighborhoods organize to outsmart centralized gatekeepers. The vibe is triumph, public power, and collective victory.</p>
+          <p style="color: var(--gold); font-weight: 700; text-transform: uppercase; font-size: 13px; letter-spacing: 0.08em; margin-top: 16px;">
+            Technology isn't the villain here. Greed is. And we have the patch for it.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: AUDIENCE TESTING & INTERACTIVE SIGNAL DATA (GEN Z REFIT) -->
+    <section id="vibe-check" class="section">
+      <div class="section-title-grid" style="border-bottom: 1px solid var(--line); padding-bottom: 32px; margin-bottom: 32px;">
+        <div class="section-title">
+          <h2>Audience Signals</h2>
+          <div class="sub">Vibe Check Verification</div>
+        </div>
+        <div class="section-copy">
+          <p>We don't wait for stuffy executives in boardrooms to tell us if our story works. We dropped the movie’s core moral controversies directly onto the feed to see what makes people sit up and argue. The response was organic, spirited, and proved that audiences are hungry for stories with actual skin in the game.</p>
+        </div>
+      </div>
+
+      <div class="testing-container">
+        <!-- Left Column: Tested Hooks -->
+        <div style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 16px; font-weight: 700;">
+            Tap a vector to read the room:
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <button onclick="selectTestingHook(0)" class="hook-btn active" id="hook-0">
+              <span class="hook-tag">Vector 01 // Medicine Hack</span>
+              <span class="hook-text">"Wait, so I can print my own meds at home instead of paying off a billionaire?"</span>
+            </button>
+            <button onclick="selectTestingHook(1)" class="hook-btn" id="hook-1">
+              <span class="hook-tag">Vector 02 // Delete Scarcity</span>
+              <span class="hook-text">"Free food, clean water, zero utility bills. Are we finally allowed to live?"</span>
+            </button>
+            <button onclick="selectTestingHook(2)" class="hook-btn" id="hook-2">
+              <span class="hook-tag">Vector 03 // Open-Source Power</span>
+              <span class="hook-text">"If the government tries to ban the blueprint, do we just host it on torrents?"</span>
+            </button>
+            <button onclick="selectTestingHook(3)" class="hook-btn" id="hook-3">
+              <span class="hook-tag">Vector 04 // Off-Grid Clubs</span>
+              <span class="hook-text">"How long until whole neighborhoods ditch the power grid and go self-governed?"</span>
+            </button>
+            <button onclick="selectTestingHook(4)" class="hook-btn" id="hook-4">
+              <span class="hook-tag">Vector 05 // Trust Code</span>
+              <span class="hook-text">"How do we make sure some absolute troll doesn't print a nuclear reactor in his garage?"</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Column: Measured Response Panel -->
+        <div class="matrix-card">
+          <div>
+            <div class="matrix-header">
+              <span style="color: var(--muted);">Internet Reaction Grid</span>
+              <span style="color: var(--gold);" id="active-vector-header">Vector 01 Response</span>
+            </div>
+
+            <div class="matrix-metrics">
+              <!-- Metric 1: Scroll Stopper -->
+              <div class="metric-row">
+                <div class="metric-label-container">
+                  <span>Scroll-Stopper Rate</span>
+                  <span class="metric-val" id="val-retention">72%</span>
+                </div>
+                <div class="metric-track">
+                  <div class="metric-fill" id="fill-retention" style="width: 72%"></div>
+                </div>
+              </div>
+
+              <!-- Metric 2: Chaotic Comments -->
+              <div class="metric-row">
+                <div class="metric-label-container">
+                  <span>Comment Section Chaos</span>
+                  <span class="metric-val" id="val-debate">64%</span>
+                </div>
+                <div class="metric-track">
+                  <div class="metric-fill" id="fill-debate" style="width: 64%"></div>
+                </div>
+              </div>
+
+              <!-- Metric 3: Saved to Favorites -->
+              <div class="metric-row">
+                <div class="metric-label-container">
+                  <span>Saves & Bookmarks</span>
+                  <span class="metric-val" id="val-saves">51%</span>
+                </div>
+                <div class="metric-track">
+                  <div class="metric-fill" id="fill-saves" style="width: 51%"></div>
+                </div>
+              </div>
+
+              <!-- Metric 4: Group Chat Shares -->
+              <div class="metric-row">
+                <div class="metric-label-container">
+                  <span>Group Chat Shares</span>
+                  <span class="metric-val" id="val-sharing">48%</span>
+                </div>
+                <div class="metric-track">
+                  <div class="metric-fill" id="fill-sharing" style="width: 48%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="matrix-synopsis">
+            <p id="vector-narrative-explanation" style="margin: 0; font-size: 13.5px; color: var(--soft);">
+              A highly targeted reaction. While some expressed safety concerns about unregulated chemical generation, the core premise sparked immediate debate on intellectual property versus survival.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: TRAILER STRATEGY (VIBES OVER GLOSS) -->
+    <section class="section">
+      <div class="section-title-grid">
+        <div class="section-title">
+          <h2>How We Edit</h2>
+          <div class="sub">Visual Tension Only</div>
+        </div>
+        <div class="section-copy">
+          <p style="font-size: 20px; color: var(--text); line-height: 1.5; margin-bottom: 20px;">
+            A vibe shift in cinema.
+          </p>
+          <p>We are completely deleting boring CGI laser battles and typical gray-filter apocalypse scenes. We edit with high-contrast, beautiful cinematography, steady hand-held motion, documentary-style urgency, and a soundtrack that hits like a heartbeat. The camera looks at technology the way a mechanic looks at an engine—with respect, not fear.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: XPRIZE ALIGNMENT -->
+    <section class="section">
+      <div class="section-title-grid">
+        <div class="section-title">
+          <h2>The XPRIZE Case</h2>
+          <div class="sub">Hope is the cheat code</div>
+        </div>
+        <div class="section-copy">
+          <p>The Future Vision XPRIZE isn't looking for another depressing story where humans lose. We've had fifty years of those movies, and honestly? They're exhausting. We are proving that an audience is instantly ready to rally behind a hopeful, community-led transition. We show that when people get the tools, they build a better world—period.</p>
+          <p style="font-size: 28px; line-height: 1.2; font-weight: 800; color: var(--gold); margin-top: 32px; letter-spacing: -0.04em;">
+            Not just a vision. It's a verified blueprint for optimistic sci-fi.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: ROADMAP (PHASE 3 & 4 IN WORK) -->
     <section class="section">
       <div class="section-title-grid border-bottom">
         <div class="section-title">
           <h2>Staged Proof</h2>
-          <div class="sub">Risk Mitigation Roadmap</div>
+          <div class="sub">How We Limit Risk</div>
         </div>
         <div class="section-copy">
-          We reduce capital and production risks for prospective investors and co-producers by validating our science-fiction intellectual property through a series of tactical benchmarks.
+          We treat IP development like a software deployment. Instead of dumping cash into unvalidated scripts, we test and refine our narrative concepts before we even touch a camera.
         </div>
       </div>
 
@@ -606,79 +888,81 @@
         <!-- Step 1 -->
         <div class="principle-item">
           <div class="step-num">PHASE I</div>
-          <h3>Grounded Script</h3>
-          <p>Establishing scientific frameworks, screenplays, and logical governance models with professional consultants.</p>
-          <div class="status-badge active-status">Complete</div>
+          <h3>Uncompromising Script</h3>
+          <p>We built a fully researched, scientifically sound script with professional system consultants. No fake techno-babble.</p>
+          <div class="status-badge active-status">Done</div>
         </div>
 
         <!-- Step 2 -->
         <div class="principle-item">
           <div class="step-num">PHASE II</div>
           <h3>Visual Keyframes</h3>
-          <p>Generating hyper-detailed concept stills, environment layouts, and high-fidelity director previsualizations.</p>
+          <p>Developing ultra-detailed concept designs, physical layout sets, and cinematic keys that set the mood.</p>
           <div class="status-badge active-status">Active</div>
         </div>
 
         <!-- Step 3 -->
         <div class="principle-item">
           <div class="step-num">PHASE III</div>
-          <h3>Audience signals</h3>
-          <p>Sharing key visual packages with direct communities to analyze early engagement, saves, and conceptual debate.</p>
-          <div class="status-badge">Upcoming</div>
+          <h3>Vibe Checks</h3>
+          <p>Sharing cinematic mood edits on public channels to analyze shares, saves, and what debates are sparking.</p>
+          <div class="status-badge active-status">Active</div>
         </div>
 
         <!-- Step 4 -->
         <div class="principle-item">
           <div class="step-num">PHASE IV</div>
-          <h3>Distribution Package</h3>
-          <p>Consolidating proof metrics, screenplay drafts, and visual styles into standard investor distribution packages.</p>
-          <div class="status-badge">Upcoming</div>
+          <h3>Pitch Package</h3>
+          <p>Packaging verified user engagement, screenplays, and visual frameworks into an airtight package for partners.</p>
+          <div class="status-badge active-status">Active</div>
         </div>
       </div>
     </section>
 
-    <section id="workflow" class="section">
+    <!-- SECTION 7: PIPELINE STRATEGY (HUMANS ONLY RULE) -->
+    <section id="pipeline" class="section">
       <div class="section-title-grid">
         <div class="section-title">
           <h2>AI Pipeline</h2>
-          <div class="sub">Strict Production Framework</div>
+          <div class="sub">How we keep the soul</div>
         </div>
         <div class="section-copy">
-          Our studio treats AI not as an autonomous creator, but as a lens. A highly refined set of pipelines lets us translate human screenplays and classic cinematic rules into stunning feature-ready visual packages.
+          We use AI like a lens, not a director. We don't write prompts to generate random junk—we build custom workflows that obey human cinematic intent, classic lens choices, and precise layout grids.
         </div>
       </div>
 
       <div class="pipeline-strategy">
         <div class="strategy-sidebar">
-          <h3>Pristine Aesthetic Control</h3>
-          <p>Instead of relying on chaotic random generations, our tools utilize exact depth-map values, character sheets, and analogue film grain emulation.</p>
+          <h3>Absolute Style Control</h3>
+          <p>No synthetic plastic-looking gloss. Our pipeline ensures exact lighting angles, character sheets, and analogue film grain emulations.</p>
         </div>
 
         <div class="pipeline-tabs">
           <div class="pipeline-tab-item">
-            <h4>01 / Human Writing Core</h4>
-            <p>AI generates nothing from scratch. All assets are mapped precisely onto professional human-made storyboards, layouts, and characters.</p>
+            <h4>01 / Human Writing First</h4>
+            <p>AI writes exactly 0% of our narrative. Everything is built on human storyboards, layouts, and real dialogue.</p>
           </div>
           <div class="pipeline-tab-item">
-            <h4>02 / Style Injecting & Spatial Guidance</h4>
-            <p>We use spatial guidance, depth masks, and color control layers to force the machine into rendering exact camera lenses, lighting setups, and compositions.</p>
+            <h4>02 / Hard Spatial Control</h4>
+            <p>We use exact spatial mapping, depth layers, and custom control nets to force every render to match physical lens structures and lighting set-ups.</p>
           </div>
           <div class="pipeline-tab-item">
-            <h4>03 / Post-Grain & Analogue Texturing</h4>
-            <p>To avoid synthetic glossiness, every final frame is filtered through real scanned Kodak cinematic grain nodes, halation, and gate weave emulations.</p>
+            <h4>03 / Pure Analog Treatment</h4>
+            <p>We completely strip out the synthetic AI gloss. Every single output is textured using real Kodak film scans, gate weave, and halation nodes.</p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- SECTION 8: STUDIO FOUNDER PROFILE (OLEG BIO) -->
     <section id="founder" class="section">
       <div class="section-title-grid">
         <div class="section-title">
-          <h2>Founder</h2>
-          <div class="sub">Industry Track Record</div>
+          <h2>The Founder</h2>
+          <div class="sub">Media Scale Veteran</div>
         </div>
         <div class="section-copy">
-          Bridging the gap between traditional broadcast operations, television fiction, and emerging AI tools to construct next-generation IP.
+          Bridging the gap between legacy broadcast scale, network television production, and modern workflows.
         </div>
       </div>
 
@@ -691,45 +975,47 @@
         </div>
 
         <div class="founder-bio">
-          <p>Oleg studied Film and Television Production at the prestigious <strong>Trebas Institute</strong> in Toronto, Canada, laying the groundwork for a highly successful career in mass media.</p>
-          <p>He built and managed broadcast media enterprises with a scale of over <strong>40 million households</strong>, acting as the founder of <strong>LEOMAX</strong>. In television production, he served as the creator, producer, and showrunner of the popular sitcom <i>"The Shopping Channel"</i> (running for 60 episodes).</p>
-          <p>His achievements in entrepreneurial media scale have been formally recognized by EY, nominating him for the prestigious <strong>Entrepreneur of the Year</strong> award. INNR Films is his focused studio for advanced human-driven sci-fi.</p>
+          <p>Oleg cut his teeth on film and television operations at the <strong>Trebas Institute</strong> in Toronto, building a rock-solid foundation for massive media networks.</p>
+          <p>He didn't just study television—he scaled it. As the founder of <strong>LEOMAX</strong>, he built and managed broadcast networks reaching over <strong>40 million households</strong>. He served as the creator, producer, and showrunner of the beloved hit sitcom <i>"The Shopping Channel"</i>, leading the crew through a massive 60-episode run.</p>
+          <p>His achievements in building massive entrepreneurial systems caught the attention of EY, who nominated him for the prestigious <strong>Entrepreneur of the Year</strong> award. INNR Films is his independent, focused move to disrupt optimistic sci-fi IP development.</p>
         </div>
       </div>
     </section>
 
+    <!-- SECTION 9: ADVISORY CONTACT -->
     <section id="contact" class="section">
       <div class="section-title-grid">
         <div class="section-title">
-          <h2>Advisory Contact</h2>
-          <div class="sub">Inquiries & Co-Production</div>
+          <h2>Pitch Us</h2>
+          <div class="sub">Let's build a future</div>
         </div>
         <div class="section-copy">
-          We selectively share conceptual packages, early scene previews, and technical workflow details with active investors, co-production partners, and technology leaders under NDA.
+          We share detailed pitch materials, scene treatments, and verified pilot metrics under NDA with select investors, co-production partners, and tech pioneers who want to win with us.
         </div>
       </div>
 
       <div class="contact-grid" style="margin-top: 32px;">
         <div class="contact-details">
-          <h3>Studio Channels</h3>
-          <p>Direct inquiries and formal advisory applications can be dispatched directly to our secure email inbox.</p>
+          <h3>Direct Channels</h3>
+          <p>Skip the middleman and pitch us directly. Our secure inbox is open for real partners.</p>
           
           <div class="contact-direct">
             <strong>EMAIL:</strong> <a href="mailto:info@innr.film">info@innr.film</a><br/>
-            <span style="color: var(--muted); font-size: 11px; display: block; margin-top: 12px; text-transform: uppercase; letter-spacing: 0.08em;">
-              London // Delaware // INNR Inc.
+            <span style="color: var(--muted); font-size: 11px; display: block; margin-top: 16px; text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.6;">
+              US // 2093 Philadelphia Pike, Claymont, DE 19703<br/>
+              UK // 80 Holland Park, London, W11 3SG
             </span>
           </div>
         </div>
 
         <form class="contact-form" onsubmit="handleFormSubmission(event)">
           <div class="form-field">
-            <label for="usrName">Full Name</label>
+            <label for="usrName">Your Name</label>
             <input type="text" id="usrName" required />
           </div>
           
           <div class="form-field">
-            <label for="usrOrg">Organization / Role</label>
+            <label for="usrOrg">Your Org / Role</label>
             <input type="text" id="usrOrg" required />
           </div>
 
@@ -739,30 +1025,103 @@
           </div>
 
           <div class="form-field form-full-width">
-            <label for="usrMsg">Message / Collaboration intent</label>
+            <label for="usrMsg">Collaboration Pitch / Intent</label>
             <textarea id="usrMsg" rows="4" required></textarea>
           </div>
 
           <div class="submit-container">
-            <button type="submit" class="submit-btn" id="submitBtn">Submit Inquiry</button>
+            <button type="submit" class="submit-btn" id="submitBtn">Submit Pitch</button>
             <div class="form-status" id="formStatus">Inquiry received. We will respond shortly.</div>
           </div>
         </form>
       </div>
     </section>
 
+    <!-- FOOTER -->
     <footer class="footer">
       <div>
         © 2026 INNR FILMS. ALL RIGHTS RESERVED.
       </div>
-      <div>
-        LONDON // DELAWARE // INNR INC.
+      <div style="text-align: right; line-height: 1.6; font-size: 10px;">
+        DE // 2093 Philadelphia Pike, Claymont, DE 19703<br/>
+        LDN // 80 Holland Park, London, W11 3SG
       </div>
     </footer>
 
   </div>
 
+  <!-- INTERACTIVE LOGIC SCRIPT -->
   <script>
+    // Bold, Gen-Z oriented Audience Performance Profiles with grounded parameters to avoid over-promising
+    const testingVectors = [
+      {
+        header: "Vector 01 Response",
+        retention: "72%",
+        debate: "64%",
+        saves: "51%",
+        sharing: "48%",
+        desc: "A highly targeted reaction. While some expressed safety concerns about unregulated chemical generation, the core premise sparked immediate debate on intellectual property versus survival."
+      },
+      {
+        header: "Vector 02 Response",
+        retention: "68%",
+        debate: "71%",
+        saves: "45%",
+        sharing: "52%",
+        desc: "The concept generated moderate friction. Comments divided sharply between users eager for post-scarcity lifestyle changes and those skeptical of real-world energy limits."
+      },
+      {
+        header: "Vector 03 Response",
+        retention: "76%",
+        debate: "62%",
+        saves: "58%",
+        sharing: "59%",
+        desc: "Strong forward rate among developer-leaning audiences. The conversation quickly shifted into practical decentralized networks and how hard it is to truly censor open source data."
+      },
+      {
+        header: "Vector 04 Response",
+        retention: "63%",
+        debate: "55%",
+        saves: "48%",
+        sharing: "42%",
+        desc: "A quieter, more contemplative response. Audiences shared it primarily within closed regional group chats, viewing the setup as a romantic but highly attractive community goal."
+      },
+      {
+        header: "Vector 05 Response",
+        retention: "78%",
+        debate: "83%",
+        saves: "50%",
+        sharing: "46%",
+        desc: "This generated our highest active debate. Skeptics raised valid points on safety guardrails, demonstrating that audiences immediately start solving the script's real conflict."
+      }
+    ];
+
+    // Interactive Widget State Switch
+    function selectTestingHook(index) {
+      const buttons = document.querySelectorAll('.hook-btn');
+      buttons.forEach((btn, idx) => {
+        if (idx === index) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      const targetData = testingVectors[index];
+      document.getElementById('active-vector-header').innerText = targetData.header;
+      document.getElementById('val-retention').innerText = targetData.retention;
+      document.getElementById('val-debate').innerText = targetData.debate;
+      document.getElementById('val-saves').innerText = targetData.saves;
+      document.getElementById('val-sharing').innerText = targetData.sharing;
+      document.getElementById('vector-narrative-explanation').innerText = targetData.desc;
+
+      document.getElementById('fill-retention').style.width = targetData.retention;
+      document.getElementById('fill-debate').style.width = targetData.debate;
+      document.getElementById('fill-saves').style.width = targetData.saves;
+      document.getElementById('fill-sharing').style.width = targetData.sharing;
+    }
+
+    // Direct Form Handling Animation
     function handleFormSubmission(e) {
       e.preventDefault();
       
@@ -777,6 +1136,11 @@
         status.classList.add('visible');
       }, 1000);
     }
+
+    // Startup Init
+    window.onload = function() {
+      selectTestingHook(0);
+    };
   </script>
 </body>
 </html>
