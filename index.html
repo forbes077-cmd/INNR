@@ -1,1146 +1,142 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>INNR [FLMS] — AI Cinematography · Film Production</title>
-  <meta name="description" content="INNR [FLMS] is an independent film studio hacking the intersection of cinematic storytelling, human-first AI workflows, and optimistic futures." />
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INNR [FLMS] — THE MATTER COMMONS</title>
   <style>
     :root {
-      --bg: #070807;
-      --text: #f2eee6;
-      --soft: #c9c0b3;
-      --muted: #8d877e;
-      --gold: #c9ad79;
-      --line: rgba(242,238,230,.12);
-      --line2: rgba(242,238,230,.24);
-      --black: #050505;
+      --bg: #070707;
+      --text: #ffffff;
+      --gold: #FFD700;
+      --muted: #666666;
     }
 
-    * { 
-      box-sizing: border-box; 
-    }
-
-    html { 
-      scroll-behavior: smooth; 
-      background-color: var(--bg);
-    }
-
+    * { box-sizing: border-box; }
+    
     body {
       margin: 0;
-      background: linear-gradient(180deg, #050606 0%, #0b0d0d 48%, #070807 100%);
+      padding: 0;
+      background: var(--bg);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      letter-spacing: -0.018em;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.2;
       overflow-x: hidden;
     }
 
-    /* Subtle cinematic print grain */
-    body:before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      pointer-events: none;
-      opacity: .015;
-      mix-blend-mode: screen;
-      background-image: repeating-radial-gradient(circle at 0 0, rgba(255,255,255,.8) 0 1px, transparent 1px 4px);
-    }
-
-    a { 
-      color: inherit; 
-      text-decoration: none; 
-    }
-
-    .page {
-      width: min(1240px, calc(100vw - 36px));
-      margin: 0 auto;
-      border-left: 1px solid rgba(242,238,230,.08);
-      border-right: 1px solid rgba(242,238,230,.08);
-      background: rgba(7,8,7,.35);
-      position: relative;
-    }
-
-    .nav {
-      height: 86px;
-      display: grid;
-      grid-template-columns: 310px 1fr auto;
-      align-items: center;
-      border-bottom: 1px solid var(--line);
-      padding: 0 24px;
-    }
-
-    .wordmark {
-      display: flex;
-      align-items: baseline;
-      gap: 5px;
-      white-space: nowrap;
-      text-transform: uppercase;
-      line-height: .88;
-    }
-
-    .wordmark .innr {
-      font-size: 29px;
-      font-weight: 800;
-      letter-spacing: -.055em;
-    }
-
-    .wordmark .bracket {
-      font-size: 29px;
-      font-weight: 800;
-      letter-spacing: -.04em;
-      line-height: .88;
-      color: var(--gold);
-    }
-
-    .wordmark .flms {
-      font-size: 25px;
-      font-weight: 700;
-      letter-spacing: -.045em;
-      line-height: .88;
-      transform: translateY(-1px);
-    }
-
-    .navlinks {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      color: var(--soft);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .navlinks a { 
-      opacity: .75; 
-      transition: opacity 0.2s ease, color 0.2s ease;
-    }
-
-    .navlinks a:hover { 
-      opacity: 1; 
-      color: var(--gold); 
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .action-pitch {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      border: 1px solid var(--gold);
-      padding: 8px 16px;
-      color: var(--gold);
-      font-weight: 700;
-      border-radius: 2px;
-      transition: all 0.2s ease;
-    }
-
-    .action-pitch:hover {
-      background: var(--gold);
-      color: var(--bg);
-    }
-
-    .hero {
-      position: relative;
-      display: flex;
-      align-items: center;
-      min-height: 520px;
-      border-bottom: 1px solid var(--line);
-      overflow: hidden;
-    }
-
-    .hero-text {
-      padding: 96px 48px;
+    .container {
       max-width: 900px;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      margin: 0 auto;
+      padding: 80px 20px;
     }
 
-    .hero h1 {
-      margin: 0 0 28px;
-      font-size: clamp(44px, 6vw, 80px);
-      line-height: .92;
-      letter-spacing: -.065em;
+    h1, h2, h3 {
       text-transform: uppercase;
       font-weight: 900;
-    }
-
-    .hero p {
-      max-width: 680px;
-      color: var(--soft);
-      font-size: 18px;
-      line-height: 1.6;
-      margin: 0 0 32px;
-    }
-
-    .hero strong {
-      color: var(--text);
-      font-weight: 700;
-    }
-
-    .hero .principle {
-      color: var(--gold);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .section {
-      border-bottom: 1px solid var(--line);
-      padding: 64px 24px;
-    }
-
-    .section-title-grid {
-      display: grid;
-      grid-template-columns: 310px 1fr;
-      gap: 32px;
-      padding-bottom: 24px;
-    }
-
-    .section-title-grid.border-bottom {
-      border-bottom: 1px solid var(--line);
-    }
-
-    .section-title h2 {
       margin: 0;
-      font-size: 32px;
-      line-height: .96;
-      text-transform: uppercase;
-      letter-spacing: -.05em;
-      font-weight: 900;
     }
 
-    .section-title .sub {
-      margin-top: 6px;
-      color: var(--gold);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
+    h1 { font-size: 70px; letter-spacing: -3px; line-height: 0.9; margin-bottom: 40px; }
+    h2 { font-size: 40px; letter-spacing: -2px; margin-bottom: 20px; color: var(--gold); }
+    h3 { font-size: 24px; letter-spacing: -1px; margin-top: 50px; margin-bottom: 15px; color: var(--muted); }
+
+    p {
+      font-size: 20px;
+      font-weight: 500;
+      max-width: 700px;
+      margin-bottom: 20px;
+      color: #cccccc;
     }
 
-    .section-copy {
-      max-width: 740px;
-      color: var(--soft);
-      font-size: 15.5px;
-      line-height: 1.65;
+    a { color: var(--gold); text-decoration: none; border-bottom: 2px solid var(--gold); }
+    a:hover { background: var(--gold); color: var(--bg); }
+
+    .nav { margin-bottom: 80px; font-weight: 900; font-size: 14px; }
+    .nav a { margin-right: 20px; color: var(--text); }
+    
+    .hook-btn {
+      display: block;
+      background: transparent;
+      color: var(--text);
+      text-align: left;
+      border: none;
+      padding: 20px 0;
+      border-bottom: 2px solid #222;
+      cursor: pointer;
+      width: 100%;
+      font-size: 20px;
+      font-weight: 800;
+      transition: color 0.2s;
     }
 
-    .section-copy p { 
-      margin: 0 0 16px; 
-    }
-
-    .section-copy p:last-child {
-      margin-bottom: 0;
-    }
-
-    .section-copy strong { 
-      color: var(--text); 
-    }
-
-    /* Audience Testing Framework CSS */
-    .testing-container {
+    .hook-btn:hover { color: var(--gold); border-color: var(--gold); }
+    
+    .footer-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 40px;
-      margin-top: 24px;
-    }
-
-    .hook-btn {
-      display: block;
-      width: 100%;
-      text-align: left;
-      background: none;
-      border: none;
-      border-bottom: 1px solid var(--line);
-      padding: 16px 0;
-      cursor: pointer;
-      outline: none;
-      transition: all 0.2s ease;
-    }
-
-    .hook-btn:first-child {
-      padding-top: 0;
-    }
-
-    .hook-btn .hook-tag {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 6px;
-      display: block;
-    }
-
-    .hook-btn .hook-text {
-      font-size: 16px;
-      color: var(--soft);
-      line-height: 1.4;
-      font-weight: 700;
-      transition: color 0.2s ease;
-    }
-
-    .hook-btn.active .hook-text {
-      color: var(--gold);
-    }
-
-    .hook-btn.active .hook-tag {
-      color: var(--gold);
-    }
-
-    .matrix-card {
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.01);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .matrix-header {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 12px;
-      margin-bottom: 24px;
-    }
-
-    .matrix-header span {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .matrix-metrics {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .metric-row {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .metric-label-container {
-      display: flex;
-      justify-content: space-between;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .metric-val {
-      font-weight: 700;
-      color: var(--gold);
-    }
-
-    .metric-track {
-      height: 2px;
-      background: rgba(242, 238, 230, 0.08);
-      width: 100%;
-      overflow: hidden;
-    }
-
-    .metric-fill {
-      height: 100%;
-      background: var(--gold);
-      width: 0%;
-      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .matrix-synopsis {
-      margin-top: 24px;
-      border-top: 1px solid var(--line);
-      padding-top: 16px;
-      font-size: 13.5px;
-      line-height: 1.5;
-      color: var(--soft);
-    }
-
-    .principles-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-top: 32px;
-    }
-
-    .principle-item {
-      border: 1px solid var(--line);
-      padding: 24px;
-      background: rgba(255,255,255,0.01);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .principle-item .step-num {
-      color: var(--gold);
-      font-size: 13px;
-      font-family: monospace;
-      margin-bottom: 16px;
-    }
-
-    .principle-item h3 {
-      margin: 0 0 10px;
-      font-size: 18px;
-      text-transform: uppercase;
-      font-weight: 800;
-      letter-spacing: -.03em;
-    }
-
-    .principle-item p {
-      margin: 0;
-      color: var(--soft);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .principle-item .status-badge {
-      margin-top: 20px;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    .principle-item .status-badge.active-status {
-      color: var(--gold);
-    }
-
-    .pipeline-strategy {
-      display: grid;
-      grid-template-columns: 310px 1fr;
-      gap: 32px;
-      margin-top: 24px;
-    }
-
-    .strategy-sidebar h3 {
-      color: var(--gold);
-      font-size: 15px;
-      margin: 0 0 12px;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-    }
-
-    .strategy-sidebar p {
-      color: var(--soft);
-      font-size: 13px;
-      line-height: 1.55;
-      margin: 0 0 16px;
-    }
-
-    .pipeline-tabs {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .pipeline-tab-item {
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 16px;
-    }
-
-    .pipeline-tab-item h4 {
-      margin: 0 0 6px;
-      font-size: 15px;
-      text-transform: uppercase;
-      letter-spacing: -0.02em;
-      color: var(--text);
-    }
-
-    .pipeline-tab-item p {
-      margin: 0;
-      font-size: 13.5px;
-      color: var(--soft);
-      line-height: 1.5;
-    }
-
-    .founder-grid {
-      display: grid;
-      grid-template-columns: 310px 1fr;
-      gap: 32px;
-      align-items: start;
-    }
-
-    .founder-meta h3 {
-      margin: 0 0 6px;
-      font-size: 26px;
-      text-transform: uppercase;
-      letter-spacing: -0.05em;
-      font-weight: 900;
-    }
-
-    .founder-meta .title {
-      font-size: 12px;
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 700;
-    }
-
-    .founder-bio {
-      color: var(--soft);
-      font-size: 14.5px;
-      line-height: 1.6;
-    }
-
-    .founder-bio p {
-      margin: 0 0 16px;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 310px 1fr;
-      gap: 32px;
-    }
-
-    .contact-details h3 {
-      font-size: 16px;
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin: 0 0 12px;
-    }
-
-    .contact-details p {
-      font-size: 13px;
-      color: var(--soft);
-      line-height: 1.5;
-      margin: 0 0 20px;
-    }
-
-    .contact-direct {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      font-size: 13px;
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    .contact-direct strong {
-      color: var(--gold);
-    }
-
-    .contact-direct a {
-      color: var(--text);
-      text-decoration: underline;
-      transition: color 0.2s ease;
-    }
-
-    .contact-direct a:hover {
-      color: var(--gold);
-    }
-
-    .contact-form {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-
-    .form-full-width {
-      grid-column: span 2;
-    }
-
-    .form-field {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .form-field label {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    .form-field input, .form-field textarea {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--line);
-      color: var(--text);
-      padding: 10px 12px;
-      font-size: 13.5px;
-      border-radius: 2px;
-      outline: none;
-      transition: all 0.2s ease;
-    }
-
-    .form-field input:focus, .form-field textarea:focus {
-      border-color: var(--gold);
-      background: rgba(255,255,255,0.04);
-    }
-
-    .submit-container {
-      grid-column: span 2;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 12px;
-    }
-
-    .submit-btn {
-      background: var(--gold);
-      color: var(--bg);
-      border: none;
-      padding: 12px 28px;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 700;
-      cursor: pointer;
-      border-radius: 2px;
-      transition: opacity 0.2s ease;
-    }
-
-    .submit-btn:hover {
-      opacity: 0.9;
-    }
-
-    .form-status {
-      font-size: 12px;
-      color: var(--gold);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .form-status.visible {
-      opacity: 1;
-    }
-
-    .footer {
-      border-top: 1px solid var(--line);
-      padding: 32px 24px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 20px;
-      color: var(--muted);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    @media (max-width: 1024px) {
-      .section-title-grid, .pipeline-strategy, .founder-grid, .contact-grid, .testing-container {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-      .principles-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 640px) {
-      .nav {
-        grid-template-columns: 1fr;
-        height: auto;
-        padding: 20px;
-        gap: 16px;
-        justify-items: center;
-      }
-      .navlinks {
-        gap: 20px;
-      }
-      .principles-grid {
-        grid-template-columns: 1fr;
-      }
-      .contact-form {
-        grid-template-columns: 1fr;
-      }
-      .form-full-width, .submit-container {
-        grid-column: span 1;
-      }
-      .submit-container {
-        flex-direction: column;
-        gap: 16px;
-        align-items: flex-start;
-      }
+      margin-top: 80px;
+      border-top: 2px solid #222;
+      padding-top: 40px;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
 
-  <div class="page" id="top">
+  <div class="container">
+    <nav class="nav">
+      <a href="#">INNR [FLMS]</a>
+      <a href="#about">CONCEPT</a>
+      <a href="#founder">FOUNDER</a>
+      <a href="mailto:info@innr.film">CONTACT</a>
+    </nav>
+
+    <h1>THE FUTURE IS NOT A DYSTOPIA.</h1>
+    <p>INNR Films is a studio redefining the approach to IP development. We don't guess what an audience might like; we validate it before a single frame of production begins.</p>
+
+    <h2 id="about">THE MATTER COMMONS</h2>
+    <p>Our flagship concept, developed for the <strong>Future Vision XPRIZE</strong>. It is a narrative exploration of the moral cost of abundance in a world that has mastered molecular assembly but has yet to master the art of choosing.</p>
     
-    <!-- HEADER -->
-    <header class="nav">
-      <a href="#top" class="wordmark">
-        <span class="innr">INNR</span>
-        <span class="bracket">[</span><span class="flms">FLMS</span><span class="bracket">]</span>
-      </a>
-      
-      <nav class="navlinks">
-        <a href="#project">The Project</a>
-        <a href="#vibe-check">Audience Signals</a>
-        <a href="#pipeline">How We Cook</a>
-        <a href="#founder">The Founder</a>
-        <a href="#contact">Pitch Us</a>
-      </nav>
+    <h3>THE MATTER COMPILER</h3>
+    <p>The technology is not a magic replicator; it is a system of industrial molecular assembly. It does not defy physics: it requires raw materials, energy, time, and verified blueprints. It doesn’t print "everything"—it prints what is essential: transplant organs, water filtration, satellite components, critical chips. The world has ceased arguing about the cost of things; it has begun arguing about the cost of energy.</p>
 
-      <div class="nav-actions">
-        <a href="mailto:info@innr.film" class="action-pitch">GET THE DECK</a>
-      </div>
-    </header>
+    <h3>THE GOVERNANCE LAYER: AI COMMONS</h3>
+    <p>AI in our story is not a dictator. It is a synchronization and security layer. The system operates on the principle: <em>"AI recommends. Humans authorize. Ledger remembers."</em> It prohibits the manufacture of weapons and narcotics, calculates energy expenditure, and prevents monopolies. Final decisions are not made by corporations, but by local communities: schools, clinics, and energy cooperatives.</p>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <div class="hero-text">
-        <h1 class="text-glow">No boring dystopias.<br/>Just clean chaos.</h1>
-        <p>INNR Films drops high-stakes sci-fi IPs and bulletproof, artist-controlled AI workflows. We build cinema for a world that's accelerating faster than your feed.</p>
-        <span class="principle">// CURRENT RUN: THE MATTER COMMONS — SUBMITTED FOR THE FUTURE VISION XPRIZE</span>
-      </div>
-    </section>
+    <button class="hook-btn">01 // WHO HAS THE RIGHT TO THE WORLD'S ENERGY?</button>
+    <button class="hook-btn">02 // CAN ABUNDANCE BE TRUSTED TO THE COMMONS?</button>
 
-    <!-- SECTION 1: THE MATTER COMMONS OVERVIEW -->
-    <section id="project" class="section">
-      <div class="section-title-grid">
-        <div class="section-title">
-          <h2>The Matter Commons</h2>
-          <div class="sub">The Master Blueprint</div>
-        </div>
-        <div class="section-copy">
-          <p>Imagine a machine that prints literally <em>anything</em> from thin air. Food, medicine, clean energy—you name it. Now imagine the massive tech conglomerates trying to lock it down forever. Standard dystopian nightmare, right?</p>
-          <p>But our hero, a rogue developer, decides he's not having it. He leaks the <strong>Commons Patch</strong> — an open-source public protocol that unlocks infinite material abundance for everyone on earth. This is a high-octane, tech-optimistic sci-fi feature packaged directly for the <strong>Future Vision XPRIZE</strong>. It’s about people refusing to let the future be gatekept.</p>
-        </div>
-      </div>
-    </section>
+    <h3 id="methodology">THE VIRAL FEEDBACK LOOP</h3>
+    <p>We don’t wait for a premiere to know if a story works. We create "synthetic trailers" and micro-scenes, releasing them into the wild while the script is still in the draft stage.</p>
+    
+    <h3 style="margin-top: 30px;">SIGNAL TO IP</h3>
+    <p>Each release is a stress test for virality, retention depth, and sentiment analysis. If a concept fails to spark a dialogue within the first 48 hours, we iterate: adjusting world-building variables, character motivations, or narrative pacing. Only concepts "authorized" by the future audience move into production.</p>
 
-    <!-- SECTION 2: THE PREMISE (UNFILTERED CHARACTER FOCUS) -->
-    <section class="section">
-      <div class="section-title-grid">
-        <div class="section-title">
-          <h2>The Core Idea</h2>
-          <div class="sub">The ultimate power trip</div>
-        </div>
-        <div class="section-copy">
-          <p style="font-size: 24px; line-height: 1.4; color: var(--text); font-weight: 300; margin-bottom: 24px;">
-            "We built a machine to delete starvation. The bosses built a system to sue us for it."
-          </p>
-          <p>Our story skips the usual depressing sci-fi clichés. There are no mutant terminators or dreary gray ashes. It's a gripping, fast-paced battle of wits where communities, rogue coders, and neighborhoods organize to outsmart centralized gatekeepers. The vibe is triumph, public power, and collective victory.</p>
-          <p style="color: var(--gold); font-weight: 700; text-transform: uppercase; font-size: 13px; letter-spacing: 0.08em; margin-top: 16px;">
-            Technology isn't the villain here. Greed is. And we have the patch for it.
-          </p>
-        </div>
-      </div>
-    </section>
+    <h2 id="founder" style="margin-top: 80px;">OLEG KHARUK</h2>
+    <p>Founder of INNR Films. Oleg earned his degree at the Trebas Institute in Toronto, built media networks reaching over 40 million households, and served as a creative producer for major entertainment television. Today, he leverages this experience to build next-generation IP, rigorously testing concepts against real-world audiences before production begins.</p>
+    
+    <p>
+      <a href="https://www.linkedin.com/in/oleg-kharuk-212b44138/" target="_blank">LinkedIn</a> / 
+      <a href="https://fr.wikipedia.org/wiki/Oleg_Kharuk" target="_blank">Biography</a>
+    </p>
 
-    <!-- SECTION 3: AUDIENCE TESTING & INTERACTIVE SIGNAL DATA (GEN Z REFIT) -->
-    <section id="vibe-check" class="section">
-      <div class="section-title-grid" style="border-bottom: 1px solid var(--line); padding-bottom: 32px; margin-bottom: 32px;">
-        <div class="section-title">
-          <h2>Audience Signals</h2>
-          <div class="sub">Vibe Check Verification</div>
-        </div>
-        <div class="section-copy">
-          <p>We don't wait for stuffy executives in boardrooms to tell us if our story works. We dropped the movie’s core moral controversies directly onto the feed to see what makes people sit up and argue. The response was organic, spirited, and proved that audiences are hungry for stories with actual skin in the game.</p>
-        </div>
-      </div>
-
-      <div class="testing-container">
-        <!-- Left Column: Tested Hooks -->
-        <div style="display: flex; flex-direction: column; justify-content: space-between;">
-          <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 16px; font-weight: 700;">
-            Tap a vector to read the room:
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 8px;">
-            <button onclick="selectTestingHook(0)" class="hook-btn active" id="hook-0">
-              <span class="hook-tag">Vector 01 // Medicine Hack</span>
-              <span class="hook-text">"Wait, so I can print my own meds at home instead of paying off a billionaire?"</span>
-            </button>
-            <button onclick="selectTestingHook(1)" class="hook-btn" id="hook-1">
-              <span class="hook-tag">Vector 02 // Delete Scarcity</span>
-              <span class="hook-text">"Free food, clean water, zero utility bills. Are we finally allowed to live?"</span>
-            </button>
-            <button onclick="selectTestingHook(2)" class="hook-btn" id="hook-2">
-              <span class="hook-tag">Vector 03 // Open-Source Power</span>
-              <span class="hook-text">"If the government tries to ban the blueprint, do we just host it on torrents?"</span>
-            </button>
-            <button onclick="selectTestingHook(3)" class="hook-btn" id="hook-3">
-              <span class="hook-tag">Vector 04 // Off-Grid Clubs</span>
-              <span class="hook-text">"How long until whole neighborhoods ditch the power grid and go self-governed?"</span>
-            </button>
-            <button onclick="selectTestingHook(4)" class="hook-btn" id="hook-4">
-              <span class="hook-tag">Vector 05 // Trust Code</span>
-              <span class="hook-text">"How do we make sure some absolute troll doesn't print a nuclear reactor in his garage?"</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Right Column: Measured Response Panel -->
-        <div class="matrix-card">
-          <div>
-            <div class="matrix-header">
-              <span style="color: var(--muted);">Internet Reaction Grid</span>
-              <span style="color: var(--gold);" id="active-vector-header">Vector 01 Response</span>
-            </div>
-
-            <div class="matrix-metrics">
-              <!-- Metric 1: Scroll Stopper -->
-              <div class="metric-row">
-                <div class="metric-label-container">
-                  <span>Scroll-Stopper Rate</span>
-                  <span class="metric-val" id="val-retention">72%</span>
-                </div>
-                <div class="metric-track">
-                  <div class="metric-fill" id="fill-retention" style="width: 72%"></div>
-                </div>
-              </div>
-
-              <!-- Metric 2: Chaotic Comments -->
-              <div class="metric-row">
-                <div class="metric-label-container">
-                  <span>Comment Section Chaos</span>
-                  <span class="metric-val" id="val-debate">64%</span>
-                </div>
-                <div class="metric-track">
-                  <div class="metric-fill" id="fill-debate" style="width: 64%"></div>
-                </div>
-              </div>
-
-              <!-- Metric 3: Saved to Favorites -->
-              <div class="metric-row">
-                <div class="metric-label-container">
-                  <span>Saves & Bookmarks</span>
-                  <span class="metric-val" id="val-saves">51%</span>
-                </div>
-                <div class="metric-track">
-                  <div class="metric-fill" id="fill-saves" style="width: 51%"></div>
-                </div>
-              </div>
-
-              <!-- Metric 4: Group Chat Shares -->
-              <div class="metric-row">
-                <div class="metric-label-container">
-                  <span>Group Chat Shares</span>
-                  <span class="metric-val" id="val-sharing">48%</span>
-                </div>
-                <div class="metric-track">
-                  <div class="metric-fill" id="fill-sharing" style="width: 48%"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="matrix-synopsis">
-            <p id="vector-narrative-explanation" style="margin: 0; font-size: 13.5px; color: var(--soft);">
-              A highly targeted reaction. While some expressed safety concerns about unregulated chemical generation, the core premise sparked immediate debate on intellectual property versus survival.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 4: TRAILER STRATEGY (VIBES OVER GLOSS) -->
-    <section class="section">
-      <div class="section-title-grid">
-        <div class="section-title">
-          <h2>How We Edit</h2>
-          <div class="sub">Visual Tension Only</div>
-        </div>
-        <div class="section-copy">
-          <p style="font-size: 20px; color: var(--text); line-height: 1.5; margin-bottom: 20px;">
-            A vibe shift in cinema.
-          </p>
-          <p>We are completely deleting boring CGI laser battles and typical gray-filter apocalypse scenes. We edit with high-contrast, beautiful cinematography, steady hand-held motion, documentary-style urgency, and a soundtrack that hits like a heartbeat. The camera looks at technology the way a mechanic looks at an engine—with respect, not fear.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 5: XPRIZE ALIGNMENT -->
-    <section class="section">
-      <div class="section-title-grid">
-        <div class="section-title">
-          <h2>The XPRIZE Case</h2>
-          <div class="sub">Hope is the cheat code</div>
-        </div>
-        <div class="section-copy">
-          <p>The Future Vision XPRIZE isn't looking for another depressing story where humans lose. We've had fifty years of those movies, and honestly? They're exhausting. We are proving that an audience is instantly ready to rally behind a hopeful, community-led transition. We show that when people get the tools, they build a better world—period.</p>
-          <p style="font-size: 28px; line-height: 1.2; font-weight: 800; color: var(--gold); margin-top: 32px; letter-spacing: -0.04em;">
-            Not just a vision. It's a verified blueprint for optimistic sci-fi.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 6: ROADMAP (PHASE 3 & 4 IN WORK) -->
-    <section class="section">
-      <div class="section-title-grid border-bottom">
-        <div class="section-title">
-          <h2>Staged Proof</h2>
-          <div class="sub">How We Limit Risk</div>
-        </div>
-        <div class="section-copy">
-          We treat IP development like a software deployment. Instead of dumping cash into unvalidated scripts, we test and refine our narrative concepts before we even touch a camera.
-        </div>
-      </div>
-
-      <div class="principles-grid">
-        <!-- Step 1 -->
-        <div class="principle-item">
-          <div class="step-num">PHASE I</div>
-          <h3>Uncompromising Script</h3>
-          <p>We built a fully researched, scientifically sound script with professional system consultants. No fake techno-babble.</p>
-          <div class="status-badge active-status">Done</div>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="principle-item">
-          <div class="step-num">PHASE II</div>
-          <h3>Visual Keyframes</h3>
-          <p>Developing ultra-detailed concept designs, physical layout sets, and cinematic keys that set the mood.</p>
-          <div class="status-badge active-status">Active</div>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="principle-item">
-          <div class="step-num">PHASE III</div>
-          <h3>Vibe Checks</h3>
-          <p>Sharing cinematic mood edits on public channels to analyze shares, saves, and what debates are sparking.</p>
-          <div class="status-badge active-status">Active</div>
-        </div>
-
-        <!-- Step 4 -->
-        <div class="principle-item">
-          <div class="step-num">PHASE IV</div>
-          <h3>Pitch Package</h3>
-          <p>Packaging verified user engagement, screenplays, and visual frameworks into an airtight package for partners.</p>
-          <div class="status-badge active-status">Active</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 7: PIPELINE STRATEGY (HUMANS ONLY RULE) -->
-    <section id="pipeline" class="section">
-      <div class="section-title-grid">
-        <div class="section-title">
-          <h2>AI Pipeline</h2>
-          <div class="sub">How we keep the soul</div>
-        </div>
-        <div class="section-copy">
-          We use AI like a lens, not a director. We don't write prompts to generate random junk—we build custom workflows that obey human cinematic intent, classic lens choices, and precise layout grids.
-        </div>
-      </div>
-
-      <div class="pipeline-strategy">
-        <div class="strategy-sidebar">
-          <h3>Absolute Style Control</h3>
-          <p>No synthetic plastic-looking gloss. Our pipeline ensures exact lighting angles, character sheets, and analogue film grain emulations.</p>
-        </div>
-
-        <div class="pipeline-tabs">
-          <div class="pipeline-tab-item">
-            <h4>01 / Human Writing First</h4>
-            <p>AI writes exactly 0% of our narrative. Everything is built on human storyboards, layouts, and real dialogue.</p>
-          </div>
-          <div class="pipeline-tab-item">
-            <h4>02 / Hard Spatial Control</h4>
-            <p>We use exact spatial mapping, depth layers, and custom control nets to force every render to match physical lens structures and lighting set-ups.</p>
-          </div>
-          <div class="pipeline-tab-item">
-            <h4>03 / Pure Analog Treatment</h4>
-            <p>We completely strip out the synthetic AI gloss. Every single output is textured using real Kodak film scans, gate weave, and halation nodes.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 8: STUDIO FOUNDER PROFILE (OLEG BIO) -->
-    <section id="founder" class="section">
-      <div class="section-title-grid">
-        <div class="section-title">
-          <h2>The Founder</h2>
-          <div class="sub">Media Scale Veteran</div>
-        </div>
-        <div class="section-copy">
-          Bridging the gap between legacy broadcast scale, network television production, and modern workflows.
-        </div>
-      </div>
-
-      <div class="founder-grid">
-        <div class="founder-photo-wrap">
-          <div class="founder-meta">
-            <h3>Oleg Kharuk</h3>
-            <div class="title">Producer & Tech Entrepreneur</div>
-          </div>
-        </div>
-
-        <div class="founder-bio">
-          <p>Oleg cut his teeth on film and television operations at the <strong>Trebas Institute</strong> in Toronto, building a rock-solid foundation for massive media networks.</p>
-          <p>He didn't just study television—he scaled it. As the founder of <strong>LEOMAX</strong>, he built and managed broadcast networks reaching over <strong>40 million households</strong>. He served as the creator, producer, and showrunner of the beloved hit sitcom <i>"The Shopping Channel"</i>, leading the crew through a massive 60-episode run.</p>
-          <p>His achievements in building massive entrepreneurial systems caught the attention of EY, who nominated him for the prestigious <strong>Entrepreneur of the Year</strong> award. INNR Films is his independent, focused move to disrupt optimistic sci-fi IP development.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 9: ADVISORY CONTACT -->
-    <section id="contact" class="section">
-      <div class="section-title-grid">
-        <div class="section-title">
-          <h2>Pitch Us</h2>
-          <div class="sub">Let's build a future</div>
-        </div>
-        <div class="section-copy">
-          We share detailed pitch materials, scene treatments, and verified pilot metrics under NDA with select investors, co-production partners, and tech pioneers who want to win with us.
-        </div>
-      </div>
-
-      <div class="contact-grid" style="margin-top: 32px;">
-        <div class="contact-details">
-          <h3>Direct Channels</h3>
-          <p>Skip the middleman and pitch us directly. Our secure inbox is open for real partners.</p>
-          
-          <div class="contact-direct">
-            <strong>EMAIL:</strong> <a href="mailto:info@innr.film">info@innr.film</a><br/>
-            <span style="color: var(--muted); font-size: 11px; display: block; margin-top: 16px; text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.6;">
-              US // 2093 Philadelphia Pike, Claymont, DE 19703<br/>
-              UK // 80 Holland Park, London, W11 3SG
-            </span>
-          </div>
-        </div>
-
-        <form class="contact-form" onsubmit="handleFormSubmission(event)">
-          <div class="form-field">
-            <label for="usrName">Your Name</label>
-            <input type="text" id="usrName" required />
-          </div>
-          
-          <div class="form-field">
-            <label for="usrOrg">Your Org / Role</label>
-            <input type="text" id="usrOrg" required />
-          </div>
-
-          <div class="form-field form-full-width">
-            <label for="usrEmail">Email Address</label>
-            <input type="email" id="usrEmail" required />
-          </div>
-
-          <div class="form-field form-full-width">
-            <label for="usrMsg">Collaboration Pitch / Intent</label>
-            <textarea id="usrMsg" rows="4" required></textarea>
-          </div>
-
-          <div class="submit-container">
-            <button type="submit" class="submit-btn" id="submitBtn">Submit Pitch</button>
-            <div class="form-status" id="formStatus">Inquiry received. We will respond shortly.</div>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
+    <div class="footer-grid">
       <div>
-        © 2026 INNR FILMS. ALL RIGHTS RESERVED.
+        <strong>US</strong><br>
+        2093 Philadelphia Pike,<br>
+        Claymont, DE 19703
       </div>
-      <div style="text-align: right; line-height: 1.6; font-size: 10px;">
-        DE // 2093 Philadelphia Pike, Claymont, DE 19703<br/>
-        LDN // 80 Holland Park, London, W11 3SG
+      <div>
+        <strong>UK</strong><br>
+        80 Holland Park,<br>
+        London, W11 3SG
       </div>
-    </footer>
+    </div>
 
+    <h3 style="margin-top: 80px;">INQUIRIES</h3>
+    <p>Reach out at <a href="mailto:info@innr.film">INFO@INNR.FILM</a>. We work under NDA with those ready to build the future.</p>
   </div>
 
-  <!-- INTERACTIVE LOGIC SCRIPT -->
-  <script>
-    // Bold, Gen-Z oriented Audience Performance Profiles with grounded parameters to avoid over-promising
-    const testingVectors = [
-      {
-        header: "Vector 01 Response",
-        retention: "72%",
-        debate: "64%",
-        saves: "51%",
-        sharing: "48%",
-        desc: "A highly targeted reaction. While some expressed safety concerns about unregulated chemical generation, the core premise sparked immediate debate on intellectual property versus survival."
-      },
-      {
-        header: "Vector 02 Response",
-        retention: "68%",
-        debate: "71%",
-        saves: "45%",
-        sharing: "52%",
-        desc: "The concept generated moderate friction. Comments divided sharply between users eager for post-scarcity lifestyle changes and those skeptical of real-world energy limits."
-      },
-      {
-        header: "Vector 03 Response",
-        retention: "76%",
-        debate: "62%",
-        saves: "58%",
-        sharing: "59%",
-        desc: "Strong forward rate among developer-leaning audiences. The conversation quickly shifted into practical decentralized networks and how hard it is to truly censor open source data."
-      },
-      {
-        header: "Vector 04 Response",
-        retention: "63%",
-        debate: "55%",
-        saves: "48%",
-        sharing: "42%",
-        desc: "A quieter, more contemplative response. Audiences shared it primarily within closed regional group chats, viewing the setup as a romantic but highly attractive community goal."
-      },
-      {
-        header: "Vector 05 Response",
-        retention: "78%",
-        debate: "83%",
-        saves: "50%",
-        sharing: "46%",
-        desc: "This generated our highest active debate. Skeptics raised valid points on safety guardrails, demonstrating that audiences immediately start solving the script's real conflict."
-      }
-    ];
-
-    // Interactive Widget State Switch
-    function selectTestingHook(index) {
-      const buttons = document.querySelectorAll('.hook-btn');
-      buttons.forEach((btn, idx) => {
-        if (idx === index) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      });
-
-      const targetData = testingVectors[index];
-      document.getElementById('active-vector-header').innerText = targetData.header;
-      document.getElementById('val-retention').innerText = targetData.retention;
-      document.getElementById('val-debate').innerText = targetData.debate;
-      document.getElementById('val-saves').innerText = targetData.saves;
-      document.getElementById('val-sharing').innerText = targetData.sharing;
-      document.getElementById('vector-narrative-explanation').innerText = targetData.desc;
-
-      document.getElementById('fill-retention').style.width = targetData.retention;
-      document.getElementById('fill-debate').style.width = targetData.debate;
-      document.getElementById('fill-saves').style.width = targetData.saves;
-      document.getElementById('fill-sharing').style.width = targetData.sharing;
-    }
-
-    // Direct Form Handling Animation
-    function handleFormSubmission(e) {
-      e.preventDefault();
-      
-      const btn = document.getElementById('submitBtn');
-      const status = document.getElementById('formStatus');
-
-      btn.style.opacity = '0.5';
-      btn.innerText = 'TRANSMITTING...';
-
-      setTimeout(() => {
-        btn.style.display = 'none';
-        status.classList.add('visible');
-      }, 1000);
-    }
-
-    // Startup Init
-    window.onload = function() {
-      selectTestingHook(0);
-    };
-  </script>
 </body>
 </html>
